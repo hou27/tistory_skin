@@ -1,6 +1,41 @@
 @charset "UTF-8";
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
+/* TOC */
+.toc-absolute {
+  position: absolute;
+  margin-top: 24px;
+}
+.toc-fixed {
+  position: fixed;
+  top: 165px;
+}
+
+.toc {
+  left: calc((100% - 1020px) / 2 - 250px);
+  width: 250px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.toc-list {
+  margin-top: 14px !important;
+  font-size: 0.9em;
+}
+
+.toc > .toc-list li {
+  margin-bottom: 14px;
+}
+
+.toc > .toc-list li:last-child {
+  margin-bottom: 0;
+}
+
+.toc > .toc-list li a {
+  text-decoration: none;
+}
+/* End of TOC */
+
 .clearfix{
 	content: "";
 	clear: both;
