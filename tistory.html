@@ -22,7 +22,13 @@
   <script src="//t1.daumcdn.net/tistory_admin/assets/skin/common/vh-check.min.js"></script>
   <script src="./images/common.js" defer></script>
   <script> (function () { var test = vhCheck();}()); </script>
+  <!-- google search -->
 	<meta name="google-site-verification" content="8mpEaGLvIxwkNXP5Qi2RIZl3uYURcwQmd2iZ40GzD-E" />
+  <!-- naver search -->
+  <meta name="naver-site-verification" content="9e353c82e8e59c0bc3aaed8a42cab5f0d9a607cb" />
+  <!-- TOC -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js">	</script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css">
 </head>
 
 
@@ -126,7 +132,6 @@
       <div id="container">
 
         <main class="main">
-
           <!-- area-main -->
           <div class="area-main">
 
@@ -195,6 +200,10 @@
               </s_list>
             </div>
             <!-- // s_list / 카테고리, 검색 리스트 -->
+
+            <!-- toc -->
+            <div class='toc'></div>
+            <!-- toc -->
 
             <!-- area-view / 뷰페이지 및 기본 영역 -->
             <div class="area-view">
@@ -1093,6 +1102,45 @@
       <!-- // footer -->
 
     </div>
+    <!-- TOC -->
+	<script>
+		var content = document.querySelector('.article-view')
+		var headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6, h7')
+		var headingMap = {}
+
+		Array.prototype.forEach.call(headings, function (heading) {
+				var id = heading.id ? heading.id : heading.textContent.trim().toLowerCase()
+									 .split(' ').join('-').replace(/[\!\@\#\$\%\^\&\*\(\):]/ig, '')
+				headingMap[id] = !isNaN(headingMap[id]) ? ++headingMap[id] : 0
+				if (headingMap[id]) {
+					heading.id = id + '-' + headingMap[id]
+				} else {
+					heading.id = id
+				}
+			})
+
+		tocbot.init({
+			tocSelector: '.toc',
+			contentSelector: '.article-view',
+			headingSelector:'h1, h2, h3',
+			hasInnerContainers: false
+		});
+
+		$(document).ready(function(){
+			$('.toc').addClass('toc-absolute');
+
+			var toc_top = $('.toc').offset().top - 165;
+			$(window).scroll(function() {
+				if ($(this).scrollTop() >= toc_top) {
+					$('.toc').addClass('toc-fixed');
+					$('.toc').removeClass('toc-absolute');
+				} else {
+					$('.toc').addClass('toc-absolute');
+					$('.toc').removeClass('toc-fixed');
+				}
+			});
+		});
+	</script>
     <!-- // wrap -->
   </s_t3>
 </body>
