@@ -4608,3 +4608,9 @@ html {
     max-width: 1020px;
     margin: 30px auto
 }
+
+.hljs
+{
+    white-space: pre;
+    overflow-x: auto;
+}
